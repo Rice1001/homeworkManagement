@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.mapper.TeacherMapper">
+    <!-- insert Teacher-->
+    <insert id="insert" parameterType="com.example.Entity.Teacher">
+        INSERT INTO teacher(id,NAME,PASSWORD)values(#{id},#{name},#{password});
+    </insert>
+
+    <!-- select all Teacher-->
+    <select id="selectAll" resultType="com.example.Entity.Teacher">
+        select*from teacher;
+    </select>
+
+    <!-- select target Teacher-->
+    <select id="findById" parameterType="int" resultType="com.example.Entity.Teacher">
+        select*from teacher where id = #{id};
+    </select>
+
+    <!-- update target Teacher-->
+    <update id="updateById" parameterType="com.example.Entity.Teacher">
+        update teacher
+            <set>
+                <if test="name != null">name = #{name},</if>
+                <if test="password != null">password = #{password}</if>
+            </set>
+        where id = #{id}
+    </update>
+
+
+
+</mapper>

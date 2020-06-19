@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.mapper.HomeworkMapper">
+    <!-- insert Homework-->
+    <insert id="insert" parameterType="com.example.Entity.Homework">
+        INSERT INTO homework(id,title,content,createTime)values(#{id},#{title},#{content},#{createTime});
+    </insert>
+
+    <!-- select all Homework-->
+    <select id="selectAll" resultType="com.example.Entity.Homework">
+        select*from homework;
+    </select>
+
+    <!-- select target Homework-->
+    <select id="findById" parameterType="int" resultType="com.example.Entity.Homework">
+        select*from homework where id = #{id};
+    </select>
+
+    <!-- update target Homework-->
+    <update id="updateById" parameterType="com.example.Entity.Homework">
+        update homework
+            <set>
+                <if test="title != null">title = #{title},</if>
+                <if test="context != null">content = #{content},</if>
+                <if test="createTime != null">createtime = #{createTime}</if>
+            </set>
+        where id = #{id}
+    </update>
+
+
+
+</mapper>
